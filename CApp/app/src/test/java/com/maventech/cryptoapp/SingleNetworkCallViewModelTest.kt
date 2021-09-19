@@ -3,7 +3,7 @@ package com.maventech.cryptoapp
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.matecho.wms.service.ApiClient
-import com.maventech.cryptoapp.viewmodel.ProductViewModel
+import com.maventech.cryptoapp.viewmodel.CurrencyViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.After
 import org.junit.Before
@@ -43,7 +43,7 @@ class SingleNetworkCallViewModelTest {
             doReturn(emptyList<ApiClient>())
                 .`when`(apiHelper)
                 .getUsers()
-            val viewModel = ProductViewModel(apiHelper)
+            val viewModel = CurrencyViewModel(apiHelper)
             viewModel.getMessageByOrderID().observeForever(apiUsersObserver)
             verify(apiHelper).getUsers()
             verify(apiUsersObserver).onChanged(Resource.success(emptyList()))

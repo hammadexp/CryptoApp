@@ -26,6 +26,5 @@ class MainActivity : DaggerAppCompatActivity() {
         val token = sharedPreference.getStringValue(getString(R.string.token))
         AppConstants.TOKEN=token
         val navController = findNavController(R.id.nav_host_fragment)
-        binding.bottomNavigation.setupWithNavController(navController)
     }
 }

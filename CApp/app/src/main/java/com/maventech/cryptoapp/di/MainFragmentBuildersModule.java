@@ -1,7 +1,7 @@
 package com.maventech.cryptoapp.di;
 
 import com.matecho.wms.view.fragments.ProductDetailFragment;
-import com.maventech.cryptoapp.ui.fragment.ProductListFragment;
+import com.maventech.cryptoapp.ui.fragment.CurrencyRateListFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -10,7 +10,7 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class MainFragmentBuildersModule {
 
     @ContributesAndroidInjector
-    abstract ProductListFragment contributeOrderListFragment();
+    abstract CurrencyRateListFragment contributeOrderListFragment();
 
     @ContributesAndroidInjector
     abstract ProductDetailFragment contributeOrderDetailFragment();

@@ -6,9 +6,12 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.matecho.wms.utils.AppConstants
 import com.matecho.wms.utils.SharedPreference
 import com.maventech.cryptoapp.R
+import com.maventech.cryptoapp.model.currencyList.Rates
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -29,12 +32,14 @@ class AppModule {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             val okHttpBuilder = OkHttpClient.Builder()
+           val gson:Gson=GsonBuilder().registerTypeAdapter(Rates::class.java,MyDeserializer())
+               .create()
             okHttpBuilder.addInterceptor { chain ->
                 val request = chain.request().newBuilder()
                 val token =
                     SharedPreference(application).getStringValue(application.getString(R.string.token))
-                if (token != null)
-                    request.addHeader(AppConstants.AUTHORIZATION, "Bearer "+token)
+             /*   if (token != null)
+                    request.addHeader(AppConstants.AUTHORIZATION, "Bearer "+token)*/
 
                 chain.proceed(request.build())
             }

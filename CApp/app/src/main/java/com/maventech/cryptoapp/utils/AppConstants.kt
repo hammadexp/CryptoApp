@@ -2,7 +2,7 @@ package com.matecho.wms.utils
 
 object AppConstants {
     val DB_NAME: String="ClientDb"
-    const val APP_URL: String="https://api.essayserviceprovider.com"
+    const val APP_URL: String="http://api.coinlayer.com/"
     const val DOC_URL: String= "$APP_URL/doc/"
     const val DATE_FORMAT_TZ = "yyyy-MM-dd'T'HH:mm:ss"
     const val DATE_FORMAT = "dd-MM-yyyy"
