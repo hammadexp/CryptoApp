@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorToolbar">#0059DD</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGrey">#555555</color>
+    <color name="colorLightGrey">#F3F3F3</color>
+    <color name="colorGreen2">#4acaa1</color>
+    <color name="colorGreen">#50b848</color>
+    <color name="colorPrimary">#1187f4</color>
+    <color name="colorPrimaryDark">#B43B424C</color>
+    <color name="colorAccent">#26D563</color>
+    <color name="colorError">#D81B60</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorDashboardHeadingColor">#292929</color>
+    <color name="colorTextBlack">#000000</color>
+    <color name="colorTextNavItem">#231f20</color>
+    <color name="colorTextDarkGrey">#888888</color>
+    <color name="color_text_grey">#a6b0ba</color>
+    <color name="color_text_blue">#0052cc</color>
+    <color name="color_bg_list">#f8f8fb</color>
+    <color name="color_save_button">#02a499</color>
+    <color name="colorAddImageBg">#d9dfe6</color>
+    <color name="colorBorderImage">#e9eaee</color>
+    <color name="colorHighlightPartial">#F2F7FA</color>
+    <color name="colorBlue">#1187f4</color>
+    <color name="colorTextGreen">#189d46</color>
+    <color name="colorTextRed">#bb3500</color>
+</resources>

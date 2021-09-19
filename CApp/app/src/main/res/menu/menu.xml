@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dashboardFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_home_24"
+        android:title="Home"/>
+    <item
+        android:id="@+id/calculateCostFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_monetization_on_24"
+        android:title="Calculate cost"/>
+    <item
+        android:id="@+id/orderNowFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_round_content_paste_24"
+        android:title="Order Now"/>
+    <item
+        android:id="@+id/loginFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_login_24"
+        android:title="Login"/>
+</menu>

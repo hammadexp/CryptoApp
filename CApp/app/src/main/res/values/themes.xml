@@ -1,0 +1,116 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.OrderApp2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="LoginButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="shapeAppearanceOverlay">@style/MyShapeAppearance</item>
+    </style>
+    <style name="MyShapeAppearance" parent="">
+        <item name="strokeColor">@color/colorGreen2</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+    <style name="list_text_base_1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:lineSpacingExtra">@dimen/_3ssp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="list_text_base_2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:lineSpacingExtra">@dimen/_3ssp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="text_10sp_black" parent="list_text_base_1">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+    <style name="text_12sp_black" parent="list_text_base_1">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="text_10sp_grey" parent="list_text_base_1">
+        <item name="android:textColor">@color/colorTextDarkGrey</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+    <style name="text_12sp_grey" parent="list_text_base_1">
+        <item name="android:textColor">@color/colorTextDarkGrey</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="text_13sp_black" parent="list_text_base_1">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="text_13sp_black_light" parent="list_text_base_2">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="text_13sp_grey_light" parent="list_text_base_2">
+        <item name="android:textColor">@color/colorTextDarkGrey</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="text_15sp_black" parent="list_text_base_1">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="text_18sp_black" parent="list_text_base_1">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+     <style name="text_13sp_black_bold" parent="text_13sp_black">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="text_15sp_black_bold" parent="text_15sp_black">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="text_13sp_blue_bold" parent="list_text_base_1">
+        <item name="android:textColor">@color/color_text_blue</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+
+    <style name="text_20sp_black" parent="list_text_base_1">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="text_24sp_black" parent="list_text_base_1">
+        <item name="android:textColor">@color/colorTextBlack</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="text_13sp_blue" parent="list_text_base_1">
+        <item name="android:textColor">@color/color_text_blue</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="text_18sp_blue" parent="list_text_base_1">
+        <item name="android:textColor">@color/color_text_blue</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+</resources>
