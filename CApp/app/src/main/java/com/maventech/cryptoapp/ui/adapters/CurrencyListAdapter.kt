@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.maventech.cryptoapp.R
 import com.maventech.cryptoapp.databinding.RowCurrencyItemBinding
 import com.maventech.cryptoapp.model.currencyRateList.CurrencyItem
-import com.maventech.cryptoapp.ui.callbacks.ProductClickCallback
+import com.maventech.cryptoapp.ui.callbacks.CurrencyClickCallback
 
 
  class CurrencyListAdapter(
     private val context: Context, list: MutableList<CurrencyItem>,
-    onItemClickListener: ProductClickCallback
+    onItemClickListener: CurrencyClickCallback
 ) : ListAdapter<CurrencyItem,CurrencyListAdapter.ViewHolder>(TodoDiffCallback()) {
     private var listCurrency: MutableList<CurrencyItem>
-    private val onItemClickListener: ProductClickCallback
+    private val onItemClickListener: CurrencyClickCallback
     fun setList(list: MutableList<CurrencyItem>) {
         this.listCurrency = list
     }

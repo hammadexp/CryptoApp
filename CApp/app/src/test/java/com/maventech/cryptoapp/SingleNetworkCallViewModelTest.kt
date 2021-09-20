@@ -1,21 +1,7 @@
 package com.maventech.cryptoapp
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.Observer
-import com.matecho.wms.service.ApiClient
-import com.maventech.cryptoapp.viewmodel.CurrencyViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
-import org.junit.rules.TestRule
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito.*
-import org.mockito.junit.MockitoJUnitRunner
 
-
+/*
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class SingleNetworkCallViewModelTest {
@@ -27,10 +13,10 @@ class SingleNetworkCallViewModelTest {
     val testCoroutineRule = TestCoroutineRule()
 
     @Mock
-    private lateinit var apiHelper: ApiHelper
+    private lateinit var apiHelper: FakeCurrencyRepository
 
     @Mock
-    private lateinit var apiUsersObserver: Observer<Resource<List<ApiUser>>>
+    private lateinit var apiUsersObserver: Observer<>
 
     @Before
     fun setUp() {
@@ -42,38 +28,20 @@ class SingleNetworkCallViewModelTest {
         testCoroutineRule.runBlockingTest {
             doReturn(emptyList<ApiClient>())
                 .`when`(apiHelper)
-                .getUsers()
+                .getCurrencies()
             val viewModel = CurrencyViewModel(apiHelper)
-            viewModel.getMessageByOrderID().observeForever(apiUsersObserver)
-            verify(apiHelper).getUsers()
-            verify(apiUsersObserver).onChanged(Resource.success(emptyList()))
-            viewModel.getUsers().removeObserver(apiUsersObserver)
+            viewModel.getCurrencies()
+                viewModel.currencyListResponse.observeForever(apiUsersObserver)
+            verify(apiUsersObserver).onChanged()
+            viewModel.currencyListResponse.removeObserver(apiUsersObserver)
         }
     }
 
-    @Test
-    fun givenServerResponseError_whenFetch_shouldReturnError() {
-        testCoroutineRule.runBlockingTest {
-            val errorMessage = "Error Message For You"
-            doThrow(RuntimeException(errorMessage))
-                .`when`(apiHelper)
-                .getUsers()
-            val viewModel = SingleNetworkCallViewModel(apiHelper)
-            viewModel.getUsers().observeForever(apiUsersObserver)
-            verify(apiHelper).getUsers()
-            verify(apiUsersObserver).onChanged(
-                Resource.error(
-                    RuntimeException(errorMessage).toString(),
-                    null
-                )
-            )
-            viewModel.getUsers().removeObserver(apiUsersObserver)
-        }
-    }
+
 
     @After
     fun tearDown() {
         // do something if required
     }
 
-}
+}*/

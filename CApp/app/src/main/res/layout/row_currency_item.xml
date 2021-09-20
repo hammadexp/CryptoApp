@@ -18,7 +18,7 @@
 
         <variable
             name="callback"
-            type="com.maventech.cryptoapp.ui.callbacks.ProductClickCallback" />
+            type="com.maventech.cryptoapp.ui.callbacks.CurrencyClickCallback" />
     </data>
 
     <androidx.cardview.widget.CardView

@@ -10,7 +10,6 @@ import android.view.WindowManager
 import android.widget.ImageView
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.bumptech.glide.Glide
-import com.matecho.wms.service.ApiClient.BASE_PATH
 import com.maventech.cryptoapp.R
 
 class DialogUtils {
@@ -33,7 +32,7 @@ class DialogUtils {
         val ivClose = imageDialog!!.findViewById<ImageView>(R.id.iv_close)
         ivClose.setOnClickListener { imageDialog!!.dismiss() }
         Glide.with(activity!!)
-                .load(BASE_PATH + imagePath) /*.apply(new RequestOptions().circleCrop())*/
+                .load(AppConstants.APP_URL + imagePath) /*.apply(new RequestOptions().circleCrop())*/
                 .into(gifImageView)
         imageDialog!!.show()
     }

@@ -8,6 +8,7 @@ import com.maventech.cryptoapp.R
 import com.maventech.cryptoapp.model.currencyList.CurrencyListResponse
 import com.maventech.cryptoapp.model.currencyRateList.ConvertCurrencyResponse
 import com.maventech.cryptoapp.model.currencyRateList.CurrencyResponse
+import com.maventech.cryptoapp.repository.CryptoRepository
 import com.maventech.cryptoapp.repository.DefaultCryptoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,21 +16,19 @@ import java.io.IOException
 import javax.inject.Inject
 
 class CurrencyViewModel @Inject constructor(
-    val dashboardRepositoryDefault: DefaultCryptoRepository,
-    application: Application
+    val dashboardRepositoryDefault: CryptoRepository
 ) : BaseViewModel(dashboardRepositoryDefault) {
     var isLoading = MutableLiveData<Int>()
     var list=MutableLiveData<CurrencyResponse>()
     var currencyListResponse=MutableLiveData<CurrencyListResponse>()
     var convertResponse=MutableLiveData<ConvertCurrencyResponse>()
 
-    var application=application
 
 
     suspend fun getCurrencyRate(): Pair<Int, String> {
         return withContext(Dispatchers.IO) {
             var msg: Pair<Int, String>
-            val data = dashboardRepositoryDefault.getCurrencyRates(application.getString(R.string.api_key))
+            val data = dashboardRepositoryDefault.getCurrencyRates(getApplication<Application>().getString(R.string.api_key))
             when ((data as NetworkResult<Any>)) {
                 is NetworkResult.Success<Any> -> {
                     list.postValue(((data as NetworkResult.Success<CurrencyResponse>).data ))
@@ -54,7 +53,7 @@ class CurrencyViewModel @Inject constructor(
     suspend fun getCurrencies(): Pair<Int, String> {
         return withContext(Dispatchers.IO) {
             var msg: Pair<Int, String>
-            val data = dashboardRepositoryDefault.getCurrencies(application.getString(R.string.api_key))
+            val data = dashboardRepositoryDefault.getCurrencies(getApplication<Application>().getString(R.string.api_key))
             when ((data as NetworkResult<Any>)) {
                 is NetworkResult.Success<Any> -> {
                     currencyListResponse.postValue(((data as NetworkResult.Success<CurrencyListResponse>).data ))
@@ -79,7 +78,7 @@ class CurrencyViewModel @Inject constructor(
     suspend fun convert(from:String,to:String,amount:String): Pair<Int, String> {
         return withContext(Dispatchers.IO) {
             var msg: Pair<Int, String>
-            val data = dashboardRepositoryDefault.convert(application.getString(R.string.api_key),
+            val data = dashboardRepositoryDefault.convert(getApplication<Application>().getString(R.string.api_key),
                 from,to,amount)
             when ((data as NetworkResult<Any>)) {
                 is NetworkResult.Success<Any> -> {

@@ -4,15 +4,9 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Environment
-import android.preference.PreferenceManager
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.matecho.wms.service.ApiClient
 import com.matecho.wms.utils.AppConstants.DATE_FORMAT_TZ
 import com.maventech.cryptoapp.R
 import java.io.*
@@ -95,50 +89,7 @@ object Helper {
         }*/
     }
 
-    fun makeLog(context: Context, log: String) {
-        val sharedPreferences =
-            PreferenceManager.getDefaultSharedPreferences(context /* Activity context */)
-        val isDebuggingOn = sharedPreferences.getBoolean(
-            context.resources.getString(R.string.debugging),
-            context.resources.getBoolean(R.bool.debuggingDefaultValue)
-        )
-        if (isDebuggingOn) {
-            val currentTime = Calendar.getInstance().time
-            val sharedPreference = SharedPreference(context)
-            val username =
-                sharedPreference.getStringValue(context.resources.getString(R.string.user_email))
-            val refCode =
-                sharedPreference.getStringValue(context.resources.getString(R.string.ref_code))
-            val manager = context.packageManager
-            var info: PackageInfo? = null
-            try {
-                info = manager.getPackageInfo(context.packageName, PackageManager.GET_ACTIVITIES)
-            } catch (e: PackageManager.NameNotFoundException) {
-                e.printStackTrace()
-            }
-            var versionName: String? = null
-            var versionCode: String? = null
-            if (info != null) {
-                versionName = info.versionName
-                versionCode = info.versionCode.toString() + ""
-            }
-            val isReg =
-                sharedPreference.getBooleanValue(context.resources.getString(R.string.is_registered))
-            val s = """ Time: $currentTime
- URL: ${ApiClient.BASE_URL}
- REFERER: ${ApiClient.REFERER}
- USERNAME: $username
- SP_REFCODE: $refCode
- ISREGISTERED: $isReg
- VERNAME $versionName
- VERCODE $versionCode
- DEVICE: ${Build.MODEL}
- SCREEN NAME: ${context.javaClass.simpleName}
- Activity: $log"""
-            Log.d("WMS", "makeLog: $s")
-            appendLog(context, s)
-        }
-    }
+
 
 
     @Throws(Exception::class)

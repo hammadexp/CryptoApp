@@ -1,6 +1,7 @@
 package com.maventech.dagger2practice.di.auth
 
 import com.matecho.wms.service.ApiInterface
+import com.maventech.cryptoapp.repository.CryptoRepository
 import com.maventech.cryptoapp.repository.DefaultCryptoRepository
 import dagger.Module
 import dagger.Provides
@@ -17,7 +18,7 @@ class DashboardModule {
 
 
     @Provides
-    fun provideDataManager(apiCall: ApiInterface): DefaultCryptoRepository {
+    fun provideDataManager(apiCall: ApiInterface): CryptoRepository {
         return DefaultCryptoRepository(apiCall)
     }
 

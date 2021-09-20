@@ -19,7 +19,7 @@ import com.maventech.cryptoapp.R
 import com.maventech.cryptoapp.databinding.FragmentCurrencyRateListBinding
 import com.maventech.cryptoapp.model.currencyRateList.CurrencyItem
 import com.maventech.cryptoapp.ui.adapters.CurrencyListAdapter
-import com.maventech.cryptoapp.ui.callbacks.ProductClickCallback
+import com.maventech.cryptoapp.ui.callbacks.CurrencyClickCallback
 import com.maventech.cryptoapp.viewmodel.CurrencyViewModel
 import com.maventech.cryptoapp.viewmodel.ViewModelProviderFactory
 import dagger.android.support.DaggerFragment
@@ -126,7 +126,8 @@ class CurrencyRateListFragment : DaggerFragment() {
 
     }
 
-    private val clickCallback: ProductClickCallback = ProductClickCallback { }
+    private val clickCallback: CurrencyClickCallback =
+        CurrencyClickCallback { }
 
 
 }

@@ -1,7 +1,18 @@
 package com.maventech.reminder.ui
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.google.common.truth.Truth.assertThat
+import com.maventech.cryptoapp.MainCoroutineRule
+import com.maventech.cryptoapp.getOrAwaitValueTest
+import com.maventech.cryptoapp.repository.FakeCurrencyRepository
+import com.maventech.cryptoapp.viewmodel.CurrencyViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 
-/*
+
 @ExperimentalCoroutinesApi
 class CurrencyViewModelTest{
     private lateinit var viewModel:CurrencyViewModel
@@ -15,50 +26,20 @@ class CurrencyViewModelTest{
     @Before
     fun setup(){
         viewModel= CurrencyViewModel(FakeCurrencyRepository())
+
     }
 
     @Test
-    fun `insert expense item with empty field returns error`(){
-        viewModel.getCurrencies()
-
-        val value=viewModel.insertExpenseItemsStatus.getOrAwaitValueTest()
-        assertThat(value.getContentIfNotHandled()?.status).isEqualTo(Status.ERROR)
-    }
-
-    @Test
-    fun `insert expense item with too long name returns error`(){
-        val string= buildString {
-            for(i in 1..Constants.MAX_NAME_LENGTH+1){
-                append(1)
-            }
+    fun `get currency rates list`(){
+//        viewModelScope.
+        runBlocking {
+        viewModel.getCurrencyRate()
         }
-        viewModel.insertExpenseItem(string,"5")
-
-        val value=viewModel.insertExpenseItemsStatus.getOrAwaitValueTest()
-        assertThat(value.getContentIfNotHandled()?.status).isEqualTo(Status.ERROR)
-    }
-
-    @Test
-    fun `insert expense item with too long price returns error`(){
-        val string= buildString {
-            for(i in 1..Constants.MAX_NAME_LENGTH+1){
-                append(1)
-            }
-        }
-        viewModel.insertExpenseItem("name",string)
-
-        val value=viewModel.insertExpenseItemsStatus.getOrAwaitValueTest()
-        assertThat(value.getContentIfNotHandled()?.status).isEqualTo(Status.ERROR)
-    }
-
-    @Test
-    fun `insert expense item with valid input returns success`(){
-
-        viewModel.insertExpenseItem("name","20")
-
-        val value=viewModel.insertExpenseItemsStatus.getOrAwaitValueTest()
-        assertThat(value.getContentIfNotHandled()?.status).isEqualTo(Status.SUCCESS)
+        val value=viewModel.list.getOrAwaitValueTest()
+        assertThat(value.rates).isNotEmpty()
     }
 
 
-}*/
+
+
+}
