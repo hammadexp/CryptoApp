@@ -1,6 +1,4 @@
-package com.maventech.cryptoapp.model.currencyList
-
-import com.google.gson.JsonObject
+package com.maventech.cryptoapp.model.currencyRateList
 
 data class CurrencyResponse(
     val success:Boolean,

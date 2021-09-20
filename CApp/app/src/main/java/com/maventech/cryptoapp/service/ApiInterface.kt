@@ -1,21 +1,25 @@
 package com.matecho.wms.service
 
-import com.matecho.wms.model.BaseResponseApi
-import com.maventech.cryptoapp.model.currencyList.CurrencyResponse
-import com.maventech.cryptoapp.model.products.ProductListResponse
+import com.maventech.cryptoapp.model.currencyList.CurrencyListResponse
+import com.maventech.cryptoapp.model.currencyRateList.ConvertCurrencyResponse
+import com.maventech.cryptoapp.model.currencyRateList.CurrencyResponse
 import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiInterface {
 
     @GET("/live")
-    fun getCurrencyList(@Query("access_key") apiKey:String
+    fun getCurrencyRateList(@Query("access_key") apiKey:String
                        ): Call<CurrencyResponse>
+
+    @GET("/list")
+    fun getCurrencies(@Query("access_key") apiKey:String
+    ): Call<CurrencyListResponse>
 
     @GET("/convert")
     fun convert(@Query("access_key") apiKey:String,
                 @Query("from") from:String,
                 @Query("to") to:String,
                 @Query("amount") amount:String
-    ): Call<CurrencyResponse>
+    ): Call<ConvertCurrencyResponse>
 }

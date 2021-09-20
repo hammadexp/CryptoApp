@@ -15,7 +15,7 @@
     <color name="colorGreen">#50b848</color>
     <color name="colorPrimary">#1187f4</color>
     <color name="colorPrimaryDark">#B43B424C</color>
-    <color name="colorAccent">#26D563</color>
+    <color name="colorAccent">#1187f4</color>
     <color name="colorError">#D81B60</color>
     <color name="colorBlack">#000000</color>
     <color name="colorDashboardHeadingColor">#292929</color>

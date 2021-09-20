@@ -10,7 +10,7 @@
 
         <variable
             name="data"
-            type="com.maventech.cryptoapp.model.currencyList.CurrencyItem" />
+            type="com.maventech.cryptoapp.model.currencyRateList.CurrencyItem" />
 
         <variable
             name="index"
@@ -43,26 +43,33 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 style="@style/text_15sp_black"
+                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:text="+asdasdasd"/>
+                android:text="@{data.name}"/>
             <TextView
                 android:id="@+id/tv_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="@dimen/_5sdp"
+                app:layout_constraintTop_toTopOf="@id/tv_name"
+                android:layout_marginEnd="15dp"
                 style="@style/text_15sp_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:text="+"/>
-
+                android:text="@{`$`+data.rate}"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@color/colorLightGrey"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

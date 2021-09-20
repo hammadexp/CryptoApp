@@ -1,4 +1,4 @@
-package com.maventech.cryptoapp.model.currencyList
+package com.maventech.cryptoapp.model.currencyRateList
 
 import com.google.gson.annotations.SerializedName
 

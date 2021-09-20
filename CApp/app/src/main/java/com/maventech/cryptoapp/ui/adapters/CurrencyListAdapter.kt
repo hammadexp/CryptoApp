@@ -2,7 +2,6 @@
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.maventech.cryptoapp.R
 import com.maventech.cryptoapp.databinding.RowCurrencyItemBinding
-import com.maventech.cryptoapp.model.currencyList.CurrencyItem
+import com.maventech.cryptoapp.model.currencyRateList.CurrencyItem
 import com.maventech.cryptoapp.ui.callbacks.ProductClickCallback
 
 
@@ -37,8 +36,7 @@ import com.maventech.cryptoapp.ui.callbacks.ProductClickCallback
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bindProducts(item: CurrencyItem) = with(binding) {
-            binding.tvName.setText(item.name)
-            binding.tvRate.setText( item.rate)
+            binding.data=item
         }
     }
 

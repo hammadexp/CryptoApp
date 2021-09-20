@@ -11,7 +11,7 @@ import com.google.gson.GsonBuilder
 import com.matecho.wms.utils.AppConstants
 import com.matecho.wms.utils.SharedPreference
 import com.maventech.cryptoapp.R
-import com.maventech.cryptoapp.model.currencyList.Rates
+import com.maventech.cryptoapp.model.currencyRateList.Rates
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -32,8 +32,6 @@ class AppModule {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             val okHttpBuilder = OkHttpClient.Builder()
-           val gson:Gson=GsonBuilder().registerTypeAdapter(Rates::class.java,MyDeserializer())
-               .create()
             okHttpBuilder.addInterceptor { chain ->
                 val request = chain.request().newBuilder()
                 val token =

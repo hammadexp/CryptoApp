@@ -12,12 +12,12 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.matecho.wms.utils.Helper
+import androidx.navigation.fragment.findNavController
 import com.matecho.wms.utils.InternetDetector
 import com.matecho.wms.utils.SharedPreference
 import com.maventech.cryptoapp.R
 import com.maventech.cryptoapp.databinding.FragmentCurrencyRateListBinding
-import com.maventech.cryptoapp.model.currencyList.CurrencyItem
+import com.maventech.cryptoapp.model.currencyRateList.CurrencyItem
 import com.maventech.cryptoapp.ui.adapters.CurrencyListAdapter
 import com.maventech.cryptoapp.ui.callbacks.ProductClickCallback
 import com.maventech.cryptoapp.viewmodel.CurrencyViewModel
@@ -69,11 +69,19 @@ class CurrencyRateListFragment : DaggerFragment() {
         viewmodel = ViewModelProvider(this, viewModelFactory)[CurrencyViewModel::class.java]
         initRecyclerView()
         initCurrencyList()
+        _binding.ivConvert.setOnClickListener{
+            findNavController().navigate(
+                R.id.action_currency_list_to_currency_convert
+            )
+        }
+
         viewmodel.isLoading.observe(getLifeCycleOwner(), {
             if (it == 1) {
-                binding?.loader?.containerLoader?.visibility = VISIBLE
+                _binding?.shimmerViewContainer.visibility = VISIBLE
+                _binding?.shimmerViewContainer.startShimmer()
             } else {
-                binding?.loader?.containerLoader?.visibility = GONE
+                _binding?.shimmerViewContainer.stopShimmer()
+                _binding?.shimmerViewContainer.visibility = GONE
             }
         })
     }
@@ -86,19 +94,25 @@ class CurrencyRateListFragment : DaggerFragment() {
 
             viewmodel.isLoading.value = 1
             lifecycleScope.launch {
-                viewmodel.getCurrencyRate()
+                viewmodel.getCurrencyRate().let {
+                    if(it.first==1)
+                        Toast.makeText(requireActivity(), it.second, Toast.LENGTH_SHORT).show()
+                }
 
                 viewmodel.list.observe(getLifeCycleOwner(), Observer {
-                    val rates = it.rates
-//                        val data = it.rates?.hashMap
+                    if(it.success) {
+                        val rates = it.rates
                         val keys = ArrayList(rates.keys)
                         val values = ArrayList(rates?.values)
                         val currencyList = ArrayList<CurrencyItem>()
-                        for (i in 0 until  keys.size) {
+                        for (i in 0 until keys.size) {
                             currencyList.add(CurrencyItem(keys[i], values[i].toString()))
                         }
                         adapter?.submitList(currencyList)
-//                    adapter.notifyDataSetChanged()
+                    }
+                    else{
+                        Toast.makeText(requireActivity(), "Something went wrong.", Toast.LENGTH_SHORT).show()
+                    }
                     viewmodel.isLoading.postValue(0)
                 })
             }
