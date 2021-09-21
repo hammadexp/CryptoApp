@@ -18,7 +18,6 @@ object Helper {
     fun redirectToActivity(context: Application, activity: Class<*>?) {
         val intent = Intent(context, activity)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        removeUserDataToNull(context)
         context.startActivity(intent)
     }
 
@@ -43,25 +42,7 @@ object Helper {
             "Bearer " + sharedPreference.getStringValue(context.getString(R.string.token))
     }
 
-    fun isUserLoggedIn(context: Context):Boolean {
-        val sharedPreference = SharedPreference(context)
-        return sharedPreference.getBooleanValue(context.getString(R.string.is_logged_in))
-    }
 
-    private fun removeUserDataToNull(context: Context) {
-        val sharedPreference = SharedPreference(context)
-        sharedPreference.saveValueInSharedPreference(context.getString(R.string.token), null)
-        sharedPreference.saveValueInSharedPreference(context.getString(R.string.first_name), null)
-        sharedPreference.saveValueInSharedPreference(context.getString(R.string.last_name), null)
-        sharedPreference.saveValueInSharedPreference(
-            context.getString(R.string.user_password),
-            null
-        )
-        sharedPreference.saveValueInSharedPreference(
-            context.getString(R.string.is_logged_in),
-            false
-        )
-    }
 
     fun hideKeyboard(activity: Activity) {
         val imm = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager

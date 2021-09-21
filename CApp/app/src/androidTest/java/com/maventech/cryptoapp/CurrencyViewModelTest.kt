@@ -1,10 +1,9 @@
-package com.maventech.reminder.ui
+package com.maventech.cryptoapp
 
+import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.test.core.app.ApplicationProvider
 import com.google.common.truth.Truth.assertThat
-import com.maventech.cryptoapp.MainCoroutineRule
-import com.maventech.cryptoapp.getOrAwaitValueTest
-import com.maventech.cryptoapp.repository.FakeCurrencyRepository
 import com.maventech.cryptoapp.viewmodel.CurrencyViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -18,25 +17,35 @@ class CurrencyViewModelTest{
     private lateinit var viewModel:CurrencyViewModel
 
     @get:Rule
-    var instantTaskExecutorRule=InstantTaskExecutorRule()
+    var instantTaskExecutorRule= InstantTaskExecutorRule()
 
     @get:Rule
     val mainCoroutineRule= MainCoroutineRule()
 
     @Before
     fun setup(){
-        viewModel= CurrencyViewModel(FakeCurrencyRepository())
+        val context = ApplicationProvider.getApplicationContext<Application>()
+
+        viewModel= CurrencyViewModel(FakeCurrencyRepository(),context)
 
     }
 
     @Test
-    fun `get currency rates list`(){
-//        viewModelScope.
+    fun testGetCurrencyRatesList(){
         runBlocking {
         viewModel.getCurrencyRate()
         }
         val value=viewModel.list.getOrAwaitValueTest()
-        assertThat(value.rates).isNotEmpty()
+        assertThat(value.rates).isNotNull()
+    }
+
+    @Test
+    fun testGetCurrencyList(){
+        runBlocking {
+            viewModel.getCurrencies()
+        }
+        val value=viewModel.currencyListResponse.getOrAwaitValueTest()
+        assertThat(value.crypto).isNotNull()
     }
 
 
