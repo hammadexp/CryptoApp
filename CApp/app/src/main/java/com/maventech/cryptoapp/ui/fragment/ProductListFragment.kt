@@ -12,6 +12,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.matecho.wms.utils.InternetDetector
 import com.matecho.wms.utils.SharedPreference
@@ -69,9 +70,11 @@ class ProductListFragment : DaggerFragment() {
         initRecyclerView()
         initProductList()
         _binding.ivConvert.setOnClickListener {
+/*
             findNavController().navigate(
                 R.id.action_product_list_to_product_detail
             )
+*/
         }
 
         viewmodel.isLoading.observe(getLifeCycleOwner(), {
@@ -121,7 +124,12 @@ class ProductListFragment : DaggerFragment() {
     }
 
     private val clickCallback: ProductClickCallback =
-        ProductClickCallback { }
+        ProductClickCallback {
+
+            val actionProductListToProductDetail =
+                ProductListFragmentDirections.actionProductListToProductDetail(it)
+            Navigation.findNavController(requireView()).navigate(actionProductListToProductDetail)
+        }
 
 
 }

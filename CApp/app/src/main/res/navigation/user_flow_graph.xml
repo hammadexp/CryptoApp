@@ -8,17 +8,24 @@
     <fragment
         android:id="@+id/currency_list"
         android:name="com.maventech.cryptoapp.ui.fragment.ProductListFragment"
-        tools:layout="@layout/fragment_product_list"
-        android:label="CurrencyListFragment" >
-        <action android:id="@+id/action_product_list_to_product_detail"
-            app:destination="@id/currency_convert"
-            />
+        android:label="CurrencyListFragment"
+        tools:layout="@layout/fragment_product_list">
+        <action
+            android:id="@+id/action_product_list_to_product_detail"
+            app:destination="@id/product_detail">
+            <argument
+                android:name="product"
+                app:argType="com.maventech.cryptoapp.model.product.Product" />
+        </action>
     </fragment>
     <fragment
-        android:id="@+id/currency_convert"
+        android:id="@+id/product_detail"
         android:name="com.maventech.cryptoapp.ui.fragment.ProductDetailFragment"
-        tools:layout="@layout/fragment_product_list"
-        android:label="CurrencyConvertFragment" >
+        android:label="ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="product"
+            app:argType="com.maventech.cryptoapp.model.product.Product" />
 
     </fragment>
 

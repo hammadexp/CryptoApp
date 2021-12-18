@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.matecho.wms.utils.InternetDetector
 import com.matecho.wms.utils.SharedPreference
 import com.maventech.cryptoapp.R
@@ -68,7 +69,14 @@ class ProductDetailFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewmodel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
-       
+        val bundle = arguments ?: return
+        val args: ProductDetailFragmentArgs =
+            ProductDetailFragmentArgs.fromBundle(bundle)
+        val product = args.product
+        _binding.tvTitle.text=product.title
+        _binding.tvDescription.text=product.description
+        _binding.tvPrice.text=product.price
+        Glide.with(binding?.ivImage!!.context).load(product.image).into(binding?.ivImage!!)
     }
 
 
