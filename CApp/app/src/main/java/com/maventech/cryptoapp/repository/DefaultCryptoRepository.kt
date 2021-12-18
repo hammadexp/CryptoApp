@@ -6,29 +6,20 @@ import javax.inject.Inject
 
 class DefaultCryptoRepository @Inject constructor(
     val apiInterface: ApiInterface
-) : BaseRepository(),CryptoRepository {
+) : BaseRepository(),ProductRepository {
 
     /**
      * Api Calling
      */
 
-    override suspend fun getCurrencyRates(apiKey: String): Any {
+
+    override suspend fun getProducts(): Any {
         val data =
-            safeApiCall({ apiInterface.getCurrencyRateList(apiKey).execute() }, "No response")
+            safeApiCall({ apiInterface.getProducts().execute() }, "No response")
         return data!!
     }
 
-    override suspend fun getCurrencies(apiKey: String): Any {
-        val data =
-            safeApiCall({ apiInterface.getCurrencies(apiKey).execute() }, "No response")
-        return data!!
-    }
 
-    override suspend fun convert(apiKey: String, from:String, to:String, amount:String): Any {
-        val data =
-            safeApiCall({ apiInterface.convert(apiKey,from,to,amount).execute() }, "No response")
-        return data!!
-    }
 
 //9d3c003b79b9751ef0326e219f0ebd2c
 

@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import com.google.common.truth.Truth.assertThat
-import com.maventech.cryptoapp.viewmodel.CurrencyViewModel
+import com.maventech.cryptoapp.viewmodel.ProductViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -13,8 +13,8 @@ import org.junit.Test
 
 
 @ExperimentalCoroutinesApi
-class CurrencyViewModelTest{
-    private lateinit var viewModel:CurrencyViewModel
+class ProductViewModelTest{
+    private lateinit var viewModel:ProductViewModel
 
     @get:Rule
     var instantTaskExecutorRule= InstantTaskExecutorRule()
@@ -26,26 +26,17 @@ class CurrencyViewModelTest{
     fun setup(){
         val context = ApplicationProvider.getApplicationContext<Application>()
 
-        viewModel= CurrencyViewModel(FakeCurrencyRepository(),context)
+        viewModel= ProductViewModel(FakeProductRepository(),context)
 
     }
 
     @Test
-    fun testGetCurrencyRatesList(){
+    fun testGetProductList(){
         runBlocking {
-        viewModel.getCurrencyRate()
+        viewModel.getProductList()
         }
         val value=viewModel.list.getOrAwaitValueTest()
-        assertThat(value.rates).isNotNull()
-    }
-
-    @Test
-    fun testGetCurrencyList(){
-        runBlocking {
-            viewModel.getCurrencies()
-        }
-        val value=viewModel.currencyListResponse.getOrAwaitValueTest()
-        assertThat(value.crypto).isNotNull()
+        assertThat(value).isNotNull()
     }
 
 

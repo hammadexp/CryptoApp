@@ -1,7 +1,7 @@
 package com.maventech.dagger2practice.di.auth
 
 import androidx.lifecycle.ViewModel
-import com.maventech.cryptoapp.viewmodel.CurrencyViewModel
+import com.maventech.cryptoapp.viewmodel.ProductViewModel
 import com.maventech.cryptoapp.di.ViewModelKey
 import dagger.Binds
 import dagger.Module
@@ -14,8 +14,8 @@ abstract class DashboardViewModelsModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(CurrencyViewModel::class)
-    abstract fun bindCurrencyViewModel(viewModel: CurrencyViewModel): ViewModel
+    @ViewModelKey(ProductViewModel::class)
+    abstract fun bindCurrencyViewModel(viewModel: ProductViewModel): ViewModel
 
 
 

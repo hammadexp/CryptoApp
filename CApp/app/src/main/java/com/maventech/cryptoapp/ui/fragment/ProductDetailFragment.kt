@@ -16,28 +16,27 @@ import androidx.navigation.fragment.findNavController
 import com.matecho.wms.utils.InternetDetector
 import com.matecho.wms.utils.SharedPreference
 import com.maventech.cryptoapp.R
-import com.maventech.cryptoapp.databinding.FragmentCurrencyRateListBinding
-import com.maventech.cryptoapp.model.currencyRateList.CurrencyItem
-import com.maventech.cryptoapp.ui.adapters.CurrencyListAdapter
-import com.maventech.cryptoapp.ui.callbacks.CurrencyClickCallback
-import com.maventech.cryptoapp.viewmodel.CurrencyViewModel
+import com.maventech.cryptoapp.databinding.FragmentProductListBinding
+import com.maventech.cryptoapp.ui.adapters.ProductListAdapter
+import com.maventech.cryptoapp.ui.callbacks.ProductClickCallback
+import com.maventech.cryptoapp.viewmodel.ProductViewModel
 import com.maventech.cryptoapp.viewmodel.ViewModelProviderFactory
 import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-class CurrencyRateListFragment : DaggerFragment() {
-    private lateinit var adapter: CurrencyListAdapter
-    private var binding: FragmentCurrencyRateListBinding? = null
+class ProductDetailFragment : DaggerFragment() {
+    private lateinit var adapter: ProductListAdapter
+    private var binding: FragmentProductListBinding? = null
 
-    private val _binding: FragmentCurrencyRateListBinding get() = this.binding!!
+    private val _binding: FragmentProductListBinding get() = this.binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelProviderFactory
 
     @Inject
-    lateinit var viewmodel: CurrencyViewModel
+    lateinit var viewmodel: ProductViewModel
 
     @Inject
     lateinit var sharedPreference: SharedPreference
@@ -52,7 +51,7 @@ class CurrencyRateListFragment : DaggerFragment() {
     ): View? {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_currency_rate_list,
+            R.layout.fragment_product_list,
             container,
             false
         )
@@ -66,12 +65,12 @@ class CurrencyRateListFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewmodel = ViewModelProvider(this, viewModelFactory)[CurrencyViewModel::class.java]
+        viewmodel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
         initRecyclerView()
-        initCurrencyList()
-        _binding.ivConvert.setOnClickListener{
+        initProductList()
+        _binding.ivConvert.setOnClickListener {
             findNavController().navigate(
-                R.id.action_currency_list_to_currency_convert
+                R.id.action_product_list_to_product_detail
             )
         }
 
@@ -86,48 +85,43 @@ class CurrencyRateListFragment : DaggerFragment() {
         })
     }
 
-    private fun initCurrencyList() {
+    private fun initProductList() {
         if (!InternetDetector.isNetworkAvailable(requireContext())) {
             Toast.makeText(requireActivity(), "Internet not available", Toast.LENGTH_SHORT).show()
             return
         }
 
-            viewmodel.isLoading.value = 1
-            lifecycleScope.launch {
-                viewmodel.getCurrencyRate().let {
-                    if(it.first==1)
-                        Toast.makeText(requireActivity(), it.second, Toast.LENGTH_SHORT).show()
-                }
-
-                viewmodel.list.observe(getLifeCycleOwner(), Observer {
-                    if(it.success) {
-                        val rates = it.rates
-                        val keys = ArrayList(rates.keys)
-                        val values = ArrayList(rates?.values)
-                        val currencyList = ArrayList<CurrencyItem>()
-                        for (i in 0 until keys.size) {
-                            currencyList.add(CurrencyItem(keys[i], values[i].toString()))
-                        }
-                        adapter?.submitList(currencyList)
-                    }
-                    else{
-                        Toast.makeText(requireActivity(), "Something went wrong.", Toast.LENGTH_SHORT).show()
-                    }
-                    viewmodel.isLoading.postValue(0)
-                })
+        viewmodel.isLoading.value = 1
+        lifecycleScope.launch {
+            viewmodel.getProductList().let {
+                if (it.first == 1)
+                    Toast.makeText(requireActivity(), it.second, Toast.LENGTH_SHORT).show()
             }
+
+            viewmodel.list.observe(getLifeCycleOwner(), Observer {
+                if (it != null) {
+                    val productList = it
+
+                    adapter?.submitList(productList)
+                } else {
+                    Toast.makeText(requireActivity(), "Something went wrong.", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                viewmodel.isLoading.postValue(0)
+            })
+        }
 
     }
 
     private fun initRecyclerView() {
-        adapter = CurrencyListAdapter(requireContext(), ArrayList(), clickCallback)
+        adapter = ProductListAdapter(requireContext(), ArrayList(), clickCallback)
         _binding.listProducts.adapter = adapter
         _binding.listProducts.setHasFixedSize(true)
 
     }
 
-    private val clickCallback: CurrencyClickCallback =
-        CurrencyClickCallback { }
+    private val clickCallback: ProductClickCallback =
+        ProductClickCallback { }
 
 
 }

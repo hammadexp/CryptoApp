@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/currency_list"
-        android:name="com.maventech.cryptoapp.ui.fragment.CurrencyRateListFragment"
-        tools:layout="@layout/fragment_currency_rate_list"
+        android:name="com.maventech.cryptoapp.ui.fragment.ProductListFragment"
+        tools:layout="@layout/fragment_product_list"
         android:label="CurrencyListFragment" >
-        <action android:id="@+id/action_currency_list_to_currency_convert"
+        <action android:id="@+id/action_product_list_to_product_detail"
             app:destination="@id/currency_convert"
             />
     </fragment>
     <fragment
         android:id="@+id/currency_convert"
-        android:name="com.matecho.wms.view.fragments.CurrencyConvertFragment"
-        tools:layout="@layout/fragment_currency_convert"
+        android:name="com.maventech.cryptoapp.ui.fragment.ProductDetailFragment"
+        tools:layout="@layout/fragment_product_list"
         android:label="CurrencyConvertFragment" >
 
     </fragment>

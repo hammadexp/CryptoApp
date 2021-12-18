@@ -11,7 +11,6 @@ import com.google.gson.GsonBuilder
 import com.matecho.wms.utils.AppConstants
 import com.matecho.wms.utils.SharedPreference
 import com.maventech.cryptoapp.R
-import com.maventech.cryptoapp.model.currencyRateList.Rates
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

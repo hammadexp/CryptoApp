@@ -8,17 +8,16 @@
 
     <View
         android:id="@+id/thumbnail"
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_60sdp"
-        android:layout_marginRight="@dimen/_12sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
         android:layout_marginTop="@dimen/_12sdp"
-        android:background="@color/color_text_grey"
-        />
+        android:layout_marginRight="@dimen/_12sdp"
+        android:background="@color/color_text_grey" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/thumbnail"
+        android:layout_below="@id/thumbnail"
         android:layout_marginTop="@dimen/_12sdp"
         android:orientation="vertical"
         >
@@ -28,6 +27,11 @@
             android:background="@color/color_text_grey" />
         <View
             android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:background="@color/color_text_grey" />
+        <View
+            android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_6sdp"
             android:background="@color/color_text_grey" />
