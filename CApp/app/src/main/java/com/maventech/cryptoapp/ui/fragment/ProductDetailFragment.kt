@@ -16,6 +16,8 @@ import androidx.navigation.fragment.findNavController
 import com.matecho.wms.utils.InternetDetector
 import com.matecho.wms.utils.SharedPreference
 import com.maventech.cryptoapp.R
+import com.maventech.cryptoapp.databinding.FragmentProductDetailBinding
+import com.maventech.cryptoapp.databinding.FragmentProductDetailBindingImpl
 import com.maventech.cryptoapp.databinding.FragmentProductListBinding
 import com.maventech.cryptoapp.ui.adapters.ProductListAdapter
 import com.maventech.cryptoapp.ui.callbacks.ProductClickCallback
@@ -28,9 +30,9 @@ import javax.inject.Inject
 
 class ProductDetailFragment : DaggerFragment() {
     private lateinit var adapter: ProductListAdapter
-    private var binding: FragmentProductListBinding? = null
+    private var binding: FragmentProductDetailBinding? = null
 
-    private val _binding: FragmentProductListBinding get() = this.binding!!
+    private val _binding: FragmentProductDetailBinding get() = this.binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelProviderFactory
@@ -51,7 +53,7 @@ class ProductDetailFragment : DaggerFragment() {
     ): View? {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_product_list,
+            R.layout.fragment_product_detail,
             container,
             false
         )
@@ -66,62 +68,9 @@ class ProductDetailFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewmodel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
-        initRecyclerView()
-        initProductList()
-        _binding.ivConvert.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_product_list_to_product_detail
-            )
-        }
-
-        viewmodel.isLoading.observe(getLifeCycleOwner(), {
-            if (it == 1) {
-                _binding?.shimmerViewContainer.visibility = VISIBLE
-                _binding?.shimmerViewContainer.startShimmer()
-            } else {
-                _binding?.shimmerViewContainer.stopShimmer()
-                _binding?.shimmerViewContainer.visibility = GONE
-            }
-        })
+       
     }
 
-    private fun initProductList() {
-        if (!InternetDetector.isNetworkAvailable(requireContext())) {
-            Toast.makeText(requireActivity(), "Internet not available", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        viewmodel.isLoading.value = 1
-        lifecycleScope.launch {
-            viewmodel.getProductList().let {
-                if (it.first == 1)
-                    Toast.makeText(requireActivity(), it.second, Toast.LENGTH_SHORT).show()
-            }
-
-            viewmodel.list.observe(getLifeCycleOwner(), Observer {
-                if (it != null) {
-                    val productList = it
-
-                    adapter?.submitList(productList)
-                } else {
-                    Toast.makeText(requireActivity(), "Something went wrong.", Toast.LENGTH_SHORT)
-                        .show()
-                }
-                viewmodel.isLoading.postValue(0)
-            })
-        }
-
-    }
-
-    private fun initRecyclerView() {
-        adapter = ProductListAdapter(requireContext(), ArrayList(), clickCallback)
-        _binding.listProducts.adapter = adapter
-        _binding.listProducts.setHasFixedSize(true)
-
-    }
-
-    private val clickCallback: ProductClickCallback =
-        ProductClickCallback { }
 
 
 }

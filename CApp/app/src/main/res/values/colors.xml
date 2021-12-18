@@ -13,7 +13,7 @@
     <color name="colorLightGrey">#F3F3F3</color>
     <color name="colorGreen2">#4acaa1</color>
     <color name="colorGreen">#50b848</color>
-    <color name="colorPrimary">#1187f4</color>
+    <color name="colorPrimary">#4AB448</color>
     <color name="colorPrimaryDark">#B43B424C</color>
     <color name="colorAccent">#1187f4</color>
     <color name="colorError">#D81B60</color>
@@ -22,7 +22,7 @@
     <color name="colorTextBlack">#000000</color>
     <color name="colorTextNavItem">#231f20</color>
     <color name="colorTextDarkGrey">#888888</color>
-    <color name="color_text_grey">#a6b0ba</color>
+    <color name="color_text_grey">#BBC4CC</color>
     <color name="color_text_blue">#0052cc</color>
     <color name="color_bg_list">#f8f8fb</color>
     <color name="color_save_button">#02a499</color>
